@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="shortcut icon" th:href="@{/assets/images/favicon_1.ico}" />
+	<title>PSMOG-进销管理系统</title>
+	<!-- Css  -->
+	<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/css/core.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/css/pages.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/assets/css/icons.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/components.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/menu.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/responsive.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" type="text/css">
+    <!-- jQuery  -->
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+
+</head>
+<body class="fixed-left">
+	<div id="wrapper">
+	    <div class="topbar">
+	        <!-- LOGO -->
+	        <div class="topbar-left">
+	            <div class="text-center">
+	                <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>PSMOG</span></a>
+	            </div>
+	        </div>
+	        <!-- Button mobile view to collapse sidebar menu -->
+	        <div class="navbar navbar-default" role="navigation">
+	            <div class="container">
+	                <div class="">
+	                    <div class="pull-left">
+	                        <button class="button-menu-mobile open-left">
+	                            <i class="fa fa-bars"></i>
+	                        </button>                       
+	                    </div>
+	                    <ul class="nav navbar-nav navbar-right pull-right">
+	                        <li class="dropdown hidden-xs">
+	                            <a href="#" data-target="#" class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+	                                <i class="md md-notifications"></i> <span class="badge badge-xs badge-danger">3</span>
+	                            </a>
+	                            <ul class="dropdown-menu dropdown-menu-lg">
+	                                <li class="text-center notifi-title">通知</li>
+	                                <li class="list-group">
+	                                   <!-- list item-->
+	                                   <a href="javascript:void(0);" class="list-group-item">
+	                                      <div class="media">
+	                                         <div class="pull-left">
+	                                            <em class="fa fa-bell-o fa-2x text-danger"></em>
+	                                         </div>
+	                                         <div class="media-body clearfix">
+	                                            <div class="media-heading">新的订单</div>
+	                                            <p class="m-0">
+	                                               <small>lalalalalaalallaal</small>
+	                                            </p>
+	                                         </div>
+	                                      </div>
+	                                   </a>
+	                                   <!-- list item-->
+	                                    <a href="javascript:void(0);" class="list-group-item">
+	                                      <div class="media">
+	                                         <div class="pull-left">
+	                                            <em class="fa fa-bell-o fa-2x text-danger"></em>
+	                                         </div>
+	                                         <div class="media-body clearfix">
+	                                            <div class="media-heading">库存更新</div>
+	                                            <p class="m-0">
+	                                               <small>lalaalallalalala</small>
+	                                            </p>
+	                                         </div>
+	                                      </div>
+	                                    </a>
+	                                    
+	                                   <!-- last list item -->
+	                                    <a href="javascript:void(0);" class="list-group-item">
+	                                      <small>查看所有通知</small>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        
+	                        <li class="hidden-xs">
+	                            <a href="#" class="right-bar-toggle waves-effect"><i class="md md-chat"></i></a>
+	                        </li>
+	                        <li class="dropdown">
+	                            <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img th:src="@{/assets/images/users/avatar-2.jpg}" alt="user-img" class="img-circle"> </a>
+	                            <ul class="dropdown-menu">
+	                                <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> 个人信息</a></li>
+	                                <li><a href="javascript:void(0)"><i class="md md-settings"></i> 设置</a></li>
+	                                <li><a href="javascript:void(0)"><i class="md md-settings-power"></i> 登出</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <!--/.nav-collapse -->
+	            </div>
+	        </div>
+	    </div>
+	    <!-- Top Bar End -->	
+	    <!-- ========== Left Sidebar Start ========== -->
+
+	    <div class="left side-menu">
+	        <div class="sidebar-inner slimscrollleft">
+	            <div class="user-details">
+	                <div class="pull-left">
+	                    <img th:src="@{/assets/images/users/avatar-2.jpg}" alt="" class="thumb-md img-circle">
+	                </div>
+	                <div class="user-info">
+	                    <div class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Doctor <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> 个人信息<div class="ripple-wrapper"></div></a></li>
+	                            <li><a href="javascript:void(0)"><i class="md md-settings"></i> 设置</a></li>
+	                            <li><a href="javascript:void(0)"><i class="md md-settings-power"></i> 登出</a></li>
+	                        </ul>
+	                    </div>
+	                    
+	                    <p class="text-muted m-0">管理员</p>
+	                </div>
+	            </div>
+	            <!--- Divider -->
+	            <div id="sidebar-menu">
+	                <ul>
+	                    <li>
+	                        <a href="index.html" class="waves-effect waves-light active"><i class="md md-home"></i><span> 首页 </span></a>
+	                    </li>                 
+	                    <li>
+	                        <a th:href="@{/assets/pages/calendar.html}" class="waves-effect" target="iframename"><i class="md md-event"></i><span> 日历 </span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/information.html}" class="waves-effect" target="iframename"><i class="md md-account-circle"></i><span> 基本信息 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/purchase.html}" class="waves-effect" target="iframename"><i class="md md-event"></i><span> 采购信息 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="stock.action" class="waves-effect" target="iframename"><i class="md md-account-balance"></i><span> 库存信息 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/order.html}" class="waves-effect" target="iframename"><i class="md md-wallet-giftcard"></i><span> 订单信息 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/form.html}" class="waves-effect" target="iframename"><i class="md md-assessment"></i><span> 报表中心 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/money.html}" class="waves-effect" target="iframename"><i class="md md-attach-money"></i><span> 财务管理 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/invoice.html}" class="waves-effect" target="iframename"><i class="md md-print"></i><span> 发票管理 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                    <li>
+	                        <a th:href="@{/assets/pages/data.html}" class="waves-effect" target="iframename"><i class="md md-trending-up"></i><span> 数据分析 </span><span class="pull-right"><i class="md  md-chevron-right"></i></span></a>
+	                    </li>
+	                </ul>
+	                <div class="clearfix"></div>
+	            </div>
+	            <div class="clearfix"></div>
+	        </div>
+	    </div>
+	    <!-- Left Sidebar End -->   
+	    <div class="content-page">
+	    	<div class="content">
+	            <div class="iframe">
+	            	<div class="embed-responsive embed-responsive-16by9">
+	  						<iframe id = "iframe" name = "iframename" class="embed-responsive-item" th:src="@{/assets/pages/welcome.html}" allowfullscreen></iframe>
+					</div>
+	            </div>
+	            <footer class="footer text-right">
+	                    2018 © Hefei.
+	            </footer>
+	        </div>
+	    </div>
+    </div>         
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+
+    <!-- Plugin Css-->
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/datatables.css">
+    <link href="/assets/plugins/modal-effect/css/component.css" rel="stylesheet">
+
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
+
+    <script src="/assets/js/modernizr.min.js"></script>
+</head>
+
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="pull-left page-title">库存情况</h4>
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="#">首页</a></li>
+
+                        <li class="active">库存管理</li>
+                    </ol>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="m-b-30">
+                                <a href="javascript:;" class="md-trigger btn btn-primary waves-effect waves-light" data-modal="modal-8">Add <i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped" id="datatable-editable">
+                        <thead>
+                        <tr>
+                            <th>货物编号</th>
+                            <th>货物名称</th>
+                            <th>库存量</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="gradeX" th:each="goods:${goodsList}">
+                            <td th:text="${goods.id}"></td>
+                            <td th:text="${goods.name}"></td>
+                            <td th:text="${goods.number}"></td>
+                            <td class="actions">
+                                <a href="javascript:void(0);" class="md-trigger waves-effect waves-light" data-modal="modal-9" th:onclick="'javascript:setInformation(\''+${goods.id}+'\',\''+${goods.name}+'\',\''+${goods.number}+'\')'"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o" th:onclick="'javascript:getID(\''+${goods.id}+'\')'"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end: page -->
+                <div class="md-modal md-effect-8" id="modal-8">
+                    <div class="col-md-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3 class="panel-title">添加信息</h3></div>
+                            <div class="panel-body">
+                                <form action="addGoods.action" method="post" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="goods_id2" class="col-sm-3 control-label">货物编号</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_id2" name="goods_id2" placeholder="编号">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="goods_name2" class="col-sm-3 control-label">货物名称</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_name2" name="goods_name2" placeholder="货物名称">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="goods_number2" class="col-sm-3 control-label">库存量</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_number2" name="goods_number2" placeholder="库存量">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-b-0">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="md-check btn-sm btn-primary waves-effect waves-light">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button class="md-close btn-sm btn-primary waves-effect waves-light">关闭</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--edit -->
+                <div class="md-modal md-effect-8" id="modal-9">
+                    <div class="col-md-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3 class="panel-title">修改信息</h3></div>
+                            <div class="panel-body">
+                                <form action="updateGoods.action" method="post" class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="goods_id" class="col-sm-3 control-label">货物编号</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_id" name="goods_id" placeholder="编号" value = "">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="goods_name" class="col-sm-3 control-label">货物名称</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_name" name="goods_name" placeholder="货物名称" value = "">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="goods_number" class="col-sm-3 control-label">库存量</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="goods_number" name="goods_number" placeholder="库存量" value = "">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-b-0">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="md-check btn-sm btn-primary waves-effect waves-light" >确认</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button class="md-close btn-sm btn-primary waves-effect waves-light">关闭</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end Panel -->
+        </div> <!-- container -->
+    </div> <!-- content -->
+    <!-- MODAL -->
+    <div id="dialog" class="modal-block mfp-hide">
+        <section class="panel panel-info panel-color">
+            <header class="panel-heading">
+                <h2 class="panel-title">提示</h2>
+            </header>
+            <div class="panel-body">
+                <form action="deleteGoods.action" method="post" role="form">
+                    <div class="modal-wrapper">
+                        <div class="modal-text">
+                            <p>确认删除这条信息吗？</p>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-md-12 text-right">
+                            <input type="text" name="delete_id" id="delete_id" value="" hidden>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">确认</button>
+                            <button id="dialogCancel" class="btn btn-default waves-effect">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- end Modal -->
+
+
+</div>
+<!-- END wrapper -->
+
+<script>
+    function setInformation(a,b,c) {
+        document.getElementById("goods_id").setAttribute("value",a);
+        document.getElementById("goods_name").setAttribute("value",b);
+        document.getElementById("goods_number").setAttribute("value",c);
+    }
+
+    function getID(a) {
+        document.getElementById("delete_id").setAttribute("value", a);
+    }
+</script>
+
+<!-- jQuery  -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+
+<!-- Examples -->
+<script src="/assets/plugins/datatables/jquery.magnific-popup.min.js"></script>
+<script src="/assets/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="/assets/plugins/datatables/datatables.editable.init.js"></script>
+
+<!-- Modal-Effect -->
+<script src="/assets/plugins/modal-effect/js/classie.js"></script>
+<script src="/assets/plugins/modal-effect/js/modalEffects.js"></script>
+
+</body>
+</html>

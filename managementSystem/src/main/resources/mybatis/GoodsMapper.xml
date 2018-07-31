@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.GoodsMapper">
+
+    <!-- 查询数据-->
+    <select id="selectAllGoods" resultType="com.model.Goods">
+        SELECT * FROM goods;
+    </select>
+
+    <!-- 添加数据-->
+    <insert id="addGoods" parameterType="com.model.Goods">
+        INSERT INTO Goods (id, name, number) VALUES (#{id}, #{name}, #{number});
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateGoods" parameterType="com.model.Goods">
+        UPDATE goods SET name=#{name}, number=#{number} WHERE id=#{id};
+    </update>
+
+    <!-- 删除数据-->
+    <delete id="deleteGoods" parameterType="int">
+        DELETE FROM goods WHERE id=#{id};
+    </delete>
+</mapper>
