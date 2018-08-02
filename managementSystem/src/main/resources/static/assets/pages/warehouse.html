@@ -38,16 +38,14 @@
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-sm-12">
-                    <h4 class="pull-left page-title">库存情况</h4>
+                    <h4 class="pull-left page-title">仓库情况</h4>
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">首页</a></li>
 
-                        <li class="active">库存管理</li>
+                        <li class="active">仓库管理</li>
                     </ol>
                 </div>
             </div>
-
-
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
@@ -60,22 +58,20 @@
                     <table class="table table-bordered table-striped" id="datatable-editable">
                         <thead>
                         <tr>
-                            <th>货物编号</th>
-                            <th>货物名称</th>
-                            <th>库存量</th>
-                            <th>仓库</th>
+                            <th>仓库编号</th>
+                            <th>仓库名称</th>
+                            <th>仓库大小</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX" th:each="goods:${goodsList}">
-                            <td th:text="${goods.id}"></td>
-                            <td th:text="${goods.name}"></td>
-                            <td th:text="${goods.number}"></td>
-                            <td th:text="${goods.w_id}"></td>
+                        <tr class="gradeX" th:each="warehouse:${warehouseList}">
+                            <td th:text="${warehouse.id}"></td>
+                            <td th:text="${warehouse.name}"></td>
+                            <td th:text="${warehouse.capacity}"></td>
                             <td class="actions">
-                                <a href="javascript:void(0);" class="md-trigger waves-effect waves-light" data-modal="modal-9" th:onclick="'javascript:setInformation(\''+${goods.id}+'\',\''+${goods.name}+'\',\''+${goods.number}+'\',\''+${goods.w_id}+'\')'"><i class="fa fa-pencil"></i></a>
-                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o" th:onclick="'javascript:getID(\''+${goods.id}+'\')'"></i></a>
+                                <a href="javascript:void(0);" class="md-trigger waves-effect waves-light" data-modal="modal-9" th:onclick="'javascript:getGoodsInfo(\''+${warehouse.id}+'\')'"><i class="fa fa-bar-chart"></i></a>
+                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o" th:onclick="'javascript:getID(\''+${warehouse.id}+'\')'"></i></a>
                             </td>
                         </tr>
                         </tbody>
@@ -85,31 +81,25 @@
                 <div class="md-modal md-effect-8" id="modal-8">
                     <div class="col-md-10">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">添加信息</h3></div>
+                            <div class="panel-heading"><h3 class="panel-title">添加仓库</h3></div>
                             <div class="panel-body">
-                                <form action="addGoods.action" method="post" class="form-horizontal" role="form">
+                                <form action="addWarehouse.action" method="post" class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label for="goods_id2" class="col-sm-3 control-label">货物编号</label>
+                                        <label for="warehouse_id" class="col-sm-3 control-label">仓库编号</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_id2" name="goods_id2" placeholder="编号">
+                                            <input type="text" class="form-control" id="warehouse_id" name="warehouse_id" placeholder="仓库编号">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="goods_name2" class="col-sm-3 control-label">货物名称</label>
+                                        <label for="warehouse_name" class="col-sm-3 control-label">仓库名称</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_name2" name="goods_name2" placeholder="货物名称">
+                                            <input type="text" class="form-control" id="warehouse_name" name="warehouse_name" placeholder="仓库名称">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="goods_number2" class="col-sm-3 control-label">库存量</label>
+                                        <label for="warehouse_capacity" class="col-sm-3 control-label">仓库大小</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_number2" name="goods_number2" placeholder="库存量">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="goods_w_id2" class="col-sm-3 control-label">仓库</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_w_id2" name="goods_w_id2" placeholder="仓库">
+                                            <input type="text" class="form-control" id="warehouse_capacity" name="warehouse_capacity" placeholder="仓库大小">
                                         </div>
                                     </div>
 
@@ -124,49 +114,37 @@
                         </div>
                     </div>
                 </div>
-                <!--edit -->
+
                 <div class="md-modal md-effect-8" id="modal-9">
                     <div class="col-md-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">修改信息</h3></div>
+                        <div class="md-content col-md-12">
+                            <section class="panel panel-info panel-color">
+                            <header class="panel-heading">
+                                <h2 class="panel-title">仓库库存</h2>
+                            </header>
+                            </section>
                             <div class="panel-body">
-                                <form action="updateGoods.action" method="post" class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="goods_id" class="col-sm-3 control-label">货物编号</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_id" name="goods_id" placeholder="编号" value = "">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <table class="table table-striped" id="table">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>货物名称</th>
+                                                <th>货物数量</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="goods_name" class="col-sm-3 control-label">货物名称</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_name" name="goods_name" placeholder="货物名称" value = "">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="goods_number" class="col-sm-3 control-label">库存量</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_number" name="goods_number" placeholder="库存量" value = "">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="goods_w_id" class="col-sm-3 control-label">仓库</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="goods_w_id" name="goods_w_id" placeholder="仓库" value = "">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group m-b-0">
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="md-check btn-sm btn-primary waves-effect waves-light" >确认</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a class="md-close btn-sm btn-primary waves-effect waves-light">关闭</a>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
+                                <button class="md-close btn-sm btn-primary waves-effect waves-light">关闭</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div> <!-- end Panel -->
         </div> <!-- container -->
     </div> <!-- content -->
@@ -177,7 +155,7 @@
                 <h2 class="panel-title">提示</h2>
             </header>
             <div class="panel-body">
-                <form action="deleteGoods.action" method="post" role="form">
+                <form action="deleteWarehouse.action" method="post" role="form">
                     <div class="modal-wrapper">
                         <div class="modal-text">
                             <p>确认删除这条信息吗？</p>
@@ -204,11 +182,22 @@
 <!-- END wrapper -->
 
 <script>
-    function setInformation(a,b,c,d) {
-        document.getElementById("goods_id").setAttribute("value",a);
-        document.getElementById("goods_name").setAttribute("value",b);
-        document.getElementById("goods_number").setAttribute("value",c);
-        document.getElementById("goods_w_id").setAttribute("value",d);
+    function getGoodsInfo(a) {
+        $("#table  tr:not(:first)").html("");
+        $.ajax({
+            type: 'POST',
+            url: 'GetGoodsInfo.action',
+            data:{id:a},
+            dataType: 'json',
+            success: function(data){
+                var item;
+                $.each(data, function (i, result) {
+                    item = "<tr><td>"+result['id'] + "</td><td>" + result['name'] + "</td><td>" + result["number"]+"</td></tr>";
+                    $('#table').append(item);
+                })
+            },
+
+        });
     }
 
     function getID(a) {
@@ -225,7 +214,7 @@
 <script src="/assets/plugins/datatables/jquery.magnific-popup.min.js"></script>
 <script src="/assets/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="/assets/plugins/datatables/datatables.editable.init.js"></script>
+<script src="/assets/plugins/datatables/datatables.editable.init2.js"></script>
 
 <!-- Modal-Effect -->
 <script src="/assets/plugins/modal-effect/js/classie.js"></script>

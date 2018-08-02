@@ -3,19 +3,19 @@ package com.controller;
 import com.model.Goods;
 import com.service.GoodsService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class GoodsController {
 
     private static Logger logger = Logger.getLogger(GoodsController.class);
-    @Autowired
+    @Resource
     private GoodsService goodsService;
 
     @RequestMapping("index")
@@ -26,7 +26,7 @@ public class GoodsController {
 
     @RequestMapping("stock.action")
     public ModelAndView select() {
-        logger.info("查询所有的用户信息");
+        logger.info("查询所有的货物信息");
         List<Goods> goodsList=goodsService.selectAllGoods();
 
         ModelAndView modelAndView = new ModelAndView("../static/assets/pages/stock");
@@ -37,9 +37,10 @@ public class GoodsController {
     @RequestMapping("addGoods.action")
     public ModelAndView addGoods(@RequestParam("goods_id2") String id,
                                  @RequestParam("goods_name2") String name,
-                                 @RequestParam("goods_number2") String number){
+                                 @RequestParam("goods_number2") String number,
+                                 @RequestParam("goods_w_id2") String w_id){
         ModelAndView mav = new ModelAndView("../static/assets/pages/stock");
-        Goods goods = new Goods(Integer.parseInt(id), name, Integer.parseInt(number));
+        Goods goods = new Goods(Integer.parseInt(id), name, Integer.parseInt(number), Integer.parseInt(w_id));
         logger.info(goods.toString());
         goodsService.addGoods(goods);
         List<Goods> goodsList=goodsService.selectAllGoods();
@@ -50,9 +51,10 @@ public class GoodsController {
     @RequestMapping("updateGoods.action")
     public ModelAndView updateGoods(@RequestParam("goods_id") String id,
                                     @RequestParam("goods_name") String name,
-                                    @RequestParam("goods_number") String number){
+                                    @RequestParam("goods_number") String number,
+                                    @RequestParam("goods_w_id") String w_id){
         ModelAndView mav = new ModelAndView("../static/assets/pages/stock");
-        Goods goods = new Goods(Integer.parseInt(id), name, Integer.parseInt(number));
+        Goods goods = new Goods(Integer.parseInt(id), name, Integer.parseInt(number), Integer.parseInt(w_id));
         logger.info(goods.toString());
         goodsService.updateGoods(goods);
         List<Goods> goodsList=goodsService.selectAllGoods();

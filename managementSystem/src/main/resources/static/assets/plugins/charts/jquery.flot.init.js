@@ -1,9 +1,3 @@
-/**
-* Theme: Montran Admin Template
-* Author: Coderthemes
-* Module/App: Flot-Chart
-*/
-
 
 !function($) {
     "use strict";
@@ -82,11 +76,6 @@
         });
     },
     //end plot graph
-
-
-    
-    
-
         //initializing various charts and components
         FlotChart.prototype.init = function() {
           //plot graph data

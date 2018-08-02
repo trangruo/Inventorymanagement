@@ -2,15 +2,15 @@ package com.service;
 
 import com.mapper.GoodsMapper;
 import com.model.Goods;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class GoodsService {
 
-    @Autowired
+    @Resource
     private GoodsMapper goodsMapper;
 
     public List<Goods> selectAllGoods(){

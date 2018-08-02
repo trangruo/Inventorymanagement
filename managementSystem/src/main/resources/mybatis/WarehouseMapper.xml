@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.WarehouseMapper">
+
+    <!-- 查询数据-->
+    <select id="selectAll" resultType="com.model.Warehouse">
+        SELECT * FROM warehouse;
+    </select>
+
+    <!-- 添加数据-->
+    <insert id="add" parameterType="com.model.Warehouse">
+        INSERT INTO warehouse (id, name, capacity) VALUES (#{id}, #{name}, #{capacity});
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="update" parameterType="com.model.Warehouse">
+        UPDATE warehouse SET name=#{name}, capacity=#{capacity} WHERE id=#{id};
+    </update>
+
+    <!-- 删除数据-->
+    <delete id="delete" parameterType="int">
+        DELETE FROM warehouse WHERE id=#{id};
+    </delete>
+
+    <!-- 获取详细信息 -->
+    <select id="getWarehouseMess" parameterType="int" resultType="com.model.Goods">
+        SELECT * from goods WHERE w_id=#{id}
+    </select>
+</mapper>

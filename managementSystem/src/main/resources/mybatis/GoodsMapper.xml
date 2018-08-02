@@ -9,12 +9,12 @@
 
     <!-- 添加数据-->
     <insert id="addGoods" parameterType="com.model.Goods">
-        INSERT INTO Goods (id, name, number) VALUES (#{id}, #{name}, #{number});
+        INSERT INTO Goods (id, name, number,w_id) VALUES (#{id}, #{name}, #{number}, #{w_id});
     </insert>
 
     <!-- 更新数据-->
     <update id="updateGoods" parameterType="com.model.Goods">
-        UPDATE goods SET name=#{name}, number=#{number} WHERE id=#{id};
+        UPDATE goods SET name=#{name}, number=#{number}, w_id=#{w_id} WHERE id=#{id};
     </update>
 
     <!-- 删除数据-->
